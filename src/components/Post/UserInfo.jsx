@@ -9,7 +9,7 @@ const UserInfo = ({ tweet }) => {
     <div className="flex gap-3 items-center whitespace-nowrap">
       <p>{tweet.user.name}</p>
       <p className="text-gray-400 text-sm">
-        @{tweet.user.name.toLoweCase().split("").join("_")}
+        @{tweet.user.name.toLowerCase().split("").join("_")}
       </p>
       <p className="text-gray-400 text-sm">1</p>
       {tweet.isEdit && <p className="text-gray-400 text-sm">Düzenlendi</p>}

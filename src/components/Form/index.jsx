@@ -54,7 +54,7 @@ const Form = ({ user }) => {
 
       // 4) yeni tweet dökümanını kollekisyona ekle
       await addDoc(tweetsCol, {
-        textContent: text,
+        text: text,
         imageContent: url,
         createdAt: serverTimestamp(),
         likes: [],
