@@ -1,11 +1,11 @@
 import { BsCardImage } from "react-icons/bs";
 import { toast } from "react-toastify";
 import { addDoc, collection, serverTimestamp } from "firebase/firestore";
-import { db, storage } from "../../firebase/config";
-import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
+import { db, storage } from "./../../firebase/config";
+import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
+import { v4 } from "uuid";
 import React, { useState } from "react";
 import Loader from "../Loader";
-import { v4 } from "uuid";
 
 const Form = ({ user }) => {
   const [isLoading, setIsLoading] = useState(false);
@@ -54,7 +54,7 @@ const Form = ({ user }) => {
 
       // 4) yeni tweet dökümanını kollekisyona ekle
       await addDoc(tweetsCol, {
-        text: text,
+        textContent: text,
         imageContent: url,
         createdAt: serverTimestamp(),
         likes: [],
@@ -66,7 +66,7 @@ const Form = ({ user }) => {
         },
       });
     } catch (err) {
-      toast.error("Tweet'i gönderirken bir sorun oldu" + err);
+      toast.error("Tweet'i gönderirken bir sorun oldu");
     }
 
     // yüklenmenin bittiğini belirt
@@ -88,7 +88,6 @@ const Form = ({ user }) => {
 
       <div className="w-full">
         <input
-          name="tweetContent"
           className="w-full mt-1 mb-2 bg-transparent outline-none md:text-lg"
           placeholder="Neler Oluyor?"
           type="text"

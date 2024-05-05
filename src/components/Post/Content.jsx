@@ -1,8 +1,16 @@
-
-const Content = () => {
+const Content = ({ tweet }) => {
   return (
-    <div>Content</div>
-  )
-}
+    <div className="my-4">
+      {tweet.textContent && <p>{tweet.textContent}</p>}
 
-export default Content
+      {tweet.imageContent && (
+        <img
+          src={tweet.imageContent}
+          className="my-2 w-full rounded-lg object-cover max-h-[400px]"
+        />
+      )}
+    </div>
+  );
+};
+
+export default Content;

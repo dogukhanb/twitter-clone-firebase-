@@ -1,16 +1,17 @@
-import { useEffect, useState } from "react";
-import { Outlet, Navigate } from "react-router-dom";
 import { onAuthStateChanged } from "firebase/auth";
+import { useEffect, useState } from "react";
+import { Outlet, useNavigate, Navigate } from "react-router-dom";
 import { auth } from "../firebase/config";
 
 const Protected = () => {
-  // kullanıcı yetkisi var mı state'i
+  // kullanıcının yetkisi var mı state'i
   const [isAuth, setIsAuth] = useState();
 
   useEffect(() => {
-    //onAuthStateChanged >> kullanıcı oturumundaki değişimi izler
+    // onAuthStateChanged > kullanıcı oturumundaki değişimi izler
     onAuthStateChanged(auth, (user) => {
-      // eğer kullanıcı varsa yetkisini true' ya çek oturumu kapalıysa yetkiyi false 'a çek
+      // eğerki kullanıcı varsa yetkisini true'ya çek
+      // oturumu kapalıysa yetkisiyi false'a çek
       setIsAuth(user ? true : false);
     });
   }, []);

@@ -1,7 +1,7 @@
-import { useEffect, useState } from "react";
-import Aside from "./Aside";
-import Main from "./Main";
 import Nav from "./Nav";
+import Main from "./Main";
+import Aside from "./Aside";
+import { useEffect, useState } from "react";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "../../firebase/config";
 
@@ -10,12 +10,13 @@ const Feed = () => {
   const [user, setUser] = useState(null);
 
   useEffect(() => {
-    // anlık olarak kullanıcı oturumundaki değişimi izle
+    // anlık olarak kullanıcı oturumundaki değişimi izler
     const unsub = onAuthStateChanged(auth, (user_data) => {
       //state'i güncelle
       setUser(user_data);
     });
-    // sayfadan ayrılma anını izle
+
+    // sayfadan ayrılma anında onAuthStateChanged'in görevini sonlandır
     return () => unsub();
   }, []);
 
